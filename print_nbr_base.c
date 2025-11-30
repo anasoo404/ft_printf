@@ -1,41 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   print_nbr_base.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asmaili <asmaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/23 23:10:03 by asmaili           #+#    #+#             */
-/*   Updated: 2025/11/30 02:33:19 by asmaili          ###   ########.fr       */
+/*   Created: 2025/11/30 02:13:20 by asmaili           #+#    #+#             */
+/*   Updated: 2025/11/30 02:56:39 by asmaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-int ft_printf(const char *format, ...)
+// gere les decimaux
+int	print_nbr_base(int nb, char *base)
 {
-	va_list	args;
-	int		i;
-	int		count;
+	long	num;
+	int		nbase;
 
-	va_start(args, format);
-	count = 0;
-	i = 0;
-	while (format[i])
+	num = nb;
+	nbase = ft_strlen(base);
+	if (num < 0)
 	{
-		if (format[i] == '%')
-		{
-			count += handle_format(format, &i, &args);
-			i++;
-			parse_sequence(); // on incremente i dans le parsing
-			count = print_sequence();
-		}
-		else
-		{
-			ft_putchar(format[i++]);
-			count++;
-		}
+		write(1, "-", 1);
+		num *= -1;
 	}
-	va_end(args);
-	return (count);
+	if (nb > nbase - 1)
+		print_nbr_base(nb / nbase, base);
+	return (print_char(base[nb % nbase]));
 }

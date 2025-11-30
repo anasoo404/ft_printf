@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putaddr.c                                       :+:      :+:    :+:   */
+/*   print_char.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asmaili <asmaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/24 05:45:12 by asmaili           #+#    #+#             */
-/*   Updated: 2025/11/24 05:46:58 by asmaili          ###   ########.fr       */
+/*   Created: 2025/11/30 02:12:59 by asmaili           #+#    #+#             */
+/*   Updated: 2025/11/30 02:56:18 by asmaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_putaddr()
-{
-	uintptr_t	addr;
+#include "ft_printf.h"
 
-	addr = (uintptr_t)ptr;
-	ft_putstr("0x");
-	ft_puthex(addr, "0123456789abcdef");
+int	print_char(char c)
+{
+	return (write(1, &c, 1));
 }

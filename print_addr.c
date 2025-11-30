@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
+/*   print_addr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asmaili <asmaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/24 10:40:13 by asmaili           #+#    #+#             */
-/*   Updated: 2025/11/24 10:40:14 by asmaili          ###   ########.fr       */
+/*   Created: 2025/11/24 05:45:12 by asmaili           #+#    #+#             */
+/*   Updated: 2025/11/30 02:56:04 by asmaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strlen(char *str)
-{
-	int	i;
+#include "ft_printf.h"
 
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
+int	print_addr(void *ptr)
+{
+	uintptr_t	addr;
+	int			count;
+
+	count = 0;
+	addr = (uintptr_t)ptr;
+	count += print_str("0x");
+	count += print_nbr(addr, "0123456789abcdef");
+	return (count);
 }
