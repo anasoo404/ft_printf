@@ -5,36 +5,35 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: asmaili <asmaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/23 23:10:03 by asmaili           #+#    #+#             */
-/*   Updated: 2025/12/01 04:49:39by asmaili          ###   ########.fr       */
+/*   Created: 2025/12/01 05:49:02 by asmaili           #+#    #+#             */
+/*   Updated: 2025/12/01 05:52:41 by asmaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	handle_format(char *format, int *i, va_list *args)
+static int	handle_format(char format, va_list *args)
 {
-	if (format[*i] == 'c')
+	if (format == 'c')
 		return (print_char(va_arg(*args, int)));
-	if (format[*i] == 's')
+	if (format == 's')
 		return (print_str(va_arg(*args, char *), NOT_FREE));
-	if (format[*i] == 'p')
+	if (format == 'p')
 		return (print_addr(va_arg(*args, void *)));
-	if (format[*i] == 'd' || format[*i] == 'i')
-		return (print_signed_nbr_base(va_arg(*args, int), "0123456789"));
-	if (format[*i] == 'u')
-		return (print_unsigned_nbr_base(va_arg(*args, unsigned int), "0123456789"));
-	if (format[*i] == 'x')
-		return (print_unsigned_nbr_base(va_arg(*args, unsigned int), "0123456789abcdef"));
-	if (format[*i] == 'X')
-		return (print_unsigned_nbr_base(va_arg(*args, unsigned int), "0123456789ABCDEF"));
-	if (format[*i] == '%')
+	if (format == 'd' || format == 'i')
+		return (print_signed_nbr_base(va_arg(*args, int), BASE_10));
+	if (format == 'u')
+		return (print_unsigned_nbr_base(va_arg(*args, unsigned int), BASE_10));
+	if (format == 'x')
+		return (print_unsigned_nbr_base(va_arg(*args, unsigned int), BASE_16L));
+	if (format == 'X')
+		return (print_unsigned_nbr_base(va_arg(*args, unsigned int), BASE_16U));
+	if (format == '%')
 		return (write(1, "%", 1));
-	*i += 1;
 	return (0);
 }
 
-int ft_printf(const char *format, ...)
+int	ft_printf(const char *format, ...)
 {
 	va_list	args;
 	int		i;
@@ -48,14 +47,13 @@ int ft_printf(const char *format, ...)
 	{
 		if (format[i] == '%')
 		{
+			i += 1;
 			init_count = count;
-			count += handle_flags(format, &i, &args);
-			if (count > init_count &&)
-			////////////?????????
+			count += handle_format(format[i++], &args);
 		}
 		else
 		{
-			ft_putchar(format[i++]);
+			print_char(format[i++]);
 			count++;
 		}
 	}

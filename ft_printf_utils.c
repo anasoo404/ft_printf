@@ -6,7 +6,7 @@
 /*   By: asmaili <asmaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 09:29:20 by asmaili           #+#    #+#             */
-/*   Updated: 2025/12/01 04:32:08 by asmaili          ###   ########.fr       */
+/*   Updated: 2025/12/01 05:54:03 by asmaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ char	*ft_str_range(char *stock, int start, int end)
 {
 	char	*str;
 	int		i;
-	int		total_len;
 
 	if (start >= end)
 		return (NULL);
@@ -53,4 +52,3 @@ int	my_atoi(char *nbr)
 	free(nbr);
 	return (res);
 }
-

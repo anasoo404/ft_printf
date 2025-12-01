@@ -37,6 +37,7 @@ char	*ft_revstr(char *str)
 	}
 	return (str);
 }
+
 /*------------print_signed_number-----------------*/
 static char	*create_nb_buf_signed(long nb, int nbase)
 {
@@ -44,12 +45,12 @@ static char	*create_nb_buf_signed(long nb, int nbase)
 	int		size;
 
 	size = 0;
-	if (nb < 0)
-		size++;
+	if (nb < 0 || nb == 0)
+		size += 1;
 	while (nb != 0)
 	{
 		nb = nb / nbase;
-		size++;
+		size += 1;
 	}
 	nbstr = malloc(sizeof(char) * (size + 1));
 	if (!nbstr)
@@ -57,7 +58,7 @@ static char	*create_nb_buf_signed(long nb, int nbase)
 	return (nbstr);
 }
 
-int	print_signed_nb_base(long nb, char *base)
+int	print_signed_nbr_base(long nb, char *base)
 {
 	char	*nbstr;
 	int		nbase;
@@ -82,6 +83,7 @@ int	print_signed_nb_base(long nb, char *base)
 	nbstr[i] = '\0';
 	return (print_str(ft_revstr(nbstr), FREE));
 }
+
 /*---------------------print_unsigned_number-----------------*/
 static char	*create_nb_buf_unsigned(unsigned long nb, int nbase)
 {
@@ -89,10 +91,12 @@ static char	*create_nb_buf_unsigned(unsigned long nb, int nbase)
 	int		size;
 
 	size = 0;
+	if (nb == 0)
+		size += 1;
 	while (nb != 0)
 	{
 		nb = nb / nbase;
-		size++;
+		size += 1;
 	}
 	nbstr = malloc(sizeof(char) * (size + 1));
 	if (!nbstr)
@@ -100,7 +104,7 @@ static char	*create_nb_buf_unsigned(unsigned long nb, int nbase)
 	return (nbstr);
 }
 
-int	print_unsigned_nb_base(unsigned long nb, char *base)
+int	print_unsigned_nbr_base(unsigned long nb, char *base)
 {
 	char	*nbstr;
 	int		nbase;
