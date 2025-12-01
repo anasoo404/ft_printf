@@ -2,5 +2,6 @@
 
 int main(void)
 {
-	printf("%%%,bidaj");
+	printf("%");
+	return (0);
 }

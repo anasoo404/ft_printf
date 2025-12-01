@@ -6,13 +6,13 @@
 /*   By: asmaili <asmaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 02:12:59 by asmaili           #+#    #+#             */
-/*   Updated: 2025/11/30 02:56:18 by asmaili          ###   ########.fr       */
+/*   Updated: 2025/12/01 05:22:28 by asmaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	print_char(char c)
+char	*print_char(int c)
 {
 	return (write(1, &c, 1));
 }

@@ -6,20 +6,20 @@
 /*   By: asmaili <asmaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 01:17:00 by asmaili           #+#    #+#             */
-/*   Updated: 2025/11/30 03:00:18 by asmaili          ###   ########.fr       */
+/*   Updated: 2025/12/01 04:37:50 by asmaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strlen(char *str)
-{
-	int	i;
+#include "ft_printf.h"
 
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
-int print_str(char *str)
+int	print_str(char *str, int to_free)
 {
-	return (write(1, str, ft_strlen(str)));
+	int	count;
+
+	if (!str)
+		return (write(1, "(null)", 6));
+	count = write(1, str, ft_strlen(str));
+	if (to_free)
+		free(str);
+	return (count);
 }
